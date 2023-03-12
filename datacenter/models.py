@@ -1,5 +1,9 @@
 from django.db import models
 
+from django.utils import timezone
+import datetime as dt
+
+
 
 class Passcard(models.Model):
     is_active = models.BooleanField(default=False)
@@ -28,3 +32,19 @@ class Visit(models.Model):
                 if self.leaved_at else 'not leaved'
             )
         )
+
+
+def get_duration(visit):
+    """Вернет длительность нахождения для визита хранилища"""
+    visitor_entered_time = visit.entered_at
+    now_time = dt.datetime.now(timezone.utc)
+    delta_time = now_time - visitor_entered_time
+
+    return delta_time
+
+
+def format_duration(duration):
+    """Откидывает от длительности нахождения миллисекунды"""
+    formatted_duration = str(duration).split('.')[0]
+    return formatted_duration
+
