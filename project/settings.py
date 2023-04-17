@@ -8,6 +8,7 @@ db_port = os.getenv('DATABASE_PORT')
 db_name = os.getenv('DATABASE_NAME')
 db_user = os.getenv('DB_USER')
 db_password = os.getenv('DB_PASS')
+allowed_hosts = os.getenv('ALLOWED_HOSTS')
 
 django_secret_key = os.getenv('SECRET_KEY')
 
@@ -30,7 +31,7 @@ DEBUG = False
 
 ROOT_URLCONF = 'project.urls'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = allowed_hosts
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
